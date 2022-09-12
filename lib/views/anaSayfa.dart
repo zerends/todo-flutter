@@ -28,6 +28,7 @@ class _AnasayfaState extends State<Anasayfa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: aramaYapiliyorMu
             ? TextField(
                 decoration: const InputDecoration(hintText: "Ara"),
@@ -35,7 +36,10 @@ class _AnasayfaState extends State<Anasayfa> {
                   context.read<AnasayfaCubit>().ara(aramaSonucu);
                 },
               )
-            : const Text("Yapılacaklar"),
+            : const Text(
+                "Yapılacaklar",
+                style: TextStyle(color: Colors.white),
+              ),
         actions: [
           aramaYapiliyorMu
               ? IconButton(
@@ -45,14 +49,17 @@ class _AnasayfaState extends State<Anasayfa> {
                     });
                     context.read<AnasayfaCubit>().yapilacakYukle();
                   },
-                  icon: const Icon(Icons.clear))
+                  icon: const Icon(Icons.clear, color: Colors.black))
               : IconButton(
                   onPressed: () {
                     setState(() {
                       aramaYapiliyorMu = true;
                     });
                   },
-                  icon: const Icon(Icons.search)),
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  )),
         ],
       ),
       body: BlocBuilder<AnasayfaCubit, List<Yapilacaklar>>(
@@ -78,7 +85,13 @@ class _AnasayfaState extends State<Anasayfa> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         children: [
-                          Text("${yapilacak.yapilacak_is}",style: TextStyle(color: Colors.black, fontSize: 18, ),),
+                          Text(
+                            "${yapilacak.yapilacak_is}",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15, fontWeight: FontWeight.bold
+                            ),
+                          ),
                           const Spacer(),
                           IconButton(
                               onPressed: () {
@@ -97,8 +110,8 @@ class _AnasayfaState extends State<Anasayfa> {
                                 ));
                               },
                               icon: const Icon(
-                                Icons.delete_outline,
-                                color: Colors.black45,
+                                Icons.delete_forever_sharp,
+                                color: Colors.black,
                               ))
                         ],
                       ),
@@ -111,6 +124,8 @@ class _AnasayfaState extends State<Anasayfa> {
         }
       }),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        backgroundColor: Colors.black,
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
@@ -120,6 +135,7 @@ class _AnasayfaState extends State<Anasayfa> {
               (value) => {context.read<AnasayfaCubit>().yapilacakYukle()});
         },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

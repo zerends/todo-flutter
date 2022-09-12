@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:todo/cubit/yapilacak_detay_cubit.dart';
@@ -26,21 +25,34 @@ class _YapilacakDetayState extends State<YapilacakDetay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Düzenle"),
-      ),
+          backgroundColor: Colors.black,
+          title: Text(
+            "Düzenle",
+          )),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(50.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               TextField(
                 controller: tfis,
                 decoration: InputDecoration(hintText: "Yapilacak Ad"),
               ),
-              ElevatedButton(onPressed: () {
-                context.read<YapilacakDetayCubit>().guncelle(widget.yapilacak.yapilacak_id,tfis.text,);
-              }, child: const Text("Güncelle"))
+              SizedBox(height: 45,),
+              ElevatedButton(
+                  onPressed: () {
+                    context.read<YapilacakDetayCubit>().guncelle(
+                          widget.yapilacak.yapilacak_id,
+                          tfis.text,
+                        );
+                  },
+                  child: const Text("Güncelle"),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 45,
+                      )))
             ],
           ),
         ),
